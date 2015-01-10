@@ -2,10 +2,11 @@ angular.module('MSLWorkshopDemo', [
     'ng-radial-progress'
 ])
 .controller('DemoCtrl', ['$scope', '$rootScope', '$timeout', function ($scope, $rootScope, $timeout) {
+    var demoProgress = Math.floor((Math.random() * 100) + 1);
     $scope.data = {
-        progress: 25,
+        progress: demoProgress,
         firstProgress: Math.floor((Math.random() * 100) + 1),
-        secondProgress: Math.floor((Math.random() * 100) + 1)
+        secondProgress: demoProgress
     };
     $scope.updateProgress = function(){
         $scope.data.secondProgress = $scope.data.progress;
