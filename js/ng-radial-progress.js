@@ -19,10 +19,11 @@ angular.module('ng-radial-progress', [])
     return {
         restrict: 'A',
         templateUrl: '/js/radialprogress.tpl.html',
+        require: 'ngModel',
         scope: {
             defaultPercentage: '@progress'
         },
-        link: function (scope, element, iAttsr) {
+        link: function (scope, element, iAttsr, NgModelController) {
             var baseIncrement = 180 / 100;
             scope.progress = {
                 isVisible: false,
@@ -53,21 +54,17 @@ angular.module('ng-radial-progress', [])
                         '-ms-transform': 'rotate(' + (baseIncrement * value * 2) +'deg)',
                         'transform': 'rotate(' + (baseIncrement * value * 2) +'deg)'
                     };
+                	$rootScope.$emit('radialProgressUpdated', value);
                 }, 0, true);
             }
-            $rootScope.$on('radialProgressUpdate', function(event, value){
-                calculateIncrement(value);
-                $rootScope.$emit('radialProgressUpdated', value);
-            });
+            NgModelController.$render = function() {
+                calculateIncrement(NgModelController.$modelValue);
+            };
             $rootScope.$on('radialProgressGetData', function(event, callback){
-        console.log('radialProgressGetData', arguments);
                 if (angular.isDefined(callback)) {
                     callback(scope.progress.percentage, scope.progress.isVisible);
                 }
             });
-            if (angular.isDefined(scope.defaultPercentage)) {
-                $rootScope.$emit('radialProgressUpdate', scope.defaultPercentage);
-            }
         }
     };
 }]);

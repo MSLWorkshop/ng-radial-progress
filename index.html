@@ -15,7 +15,7 @@
     <div class="container">
         <h1>Ng-radial-progress demo</h1>
         <h2>Basic demo</h2>
-        <div radial-progress progress="70"></div>
+        <div radial-progress ng-model="data.firstProgress"></div>
         <h2>Dynamicaly changed progress</h2>
         <div class="col-md-6">
             <div class="row">           
@@ -33,7 +33,7 @@
             </div>
         </div>
         <div class="col-md-6">          
-            <div radial-progress></div>
+            <div radial-progress ng-model="data.secondProgress"></div>
         </div>
         <h2 class="col-md-12">Events in ng-radial-progress</h2>
         <h3>Code:</h3>
