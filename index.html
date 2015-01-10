@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html ng-app="MSLWorkshopDemo">
+<head>
+    <title>AngularJS: ng-radial-progress</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.min.js"></script>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet/less" type="text/css" href="less/ng-radial-progress.less" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.2.0/less.min.js"></script>
+
+    <script type="text/javascript" src="/js/demo.js"></script>
+    <script type="text/javascript" src="/js/ng-radial-progress.js"></script>
+</head>
+<body ng-controller="DemoCtrl">
+    <div class="container">
+        <h1>Ng-radial-progress demo</h1>
+        <h2>Basic demo</h2>
+        <div radial-progress progress="70"></div>
+        <h2>Dynamicaly changed progress</h2>
+        <div class="col-md-6">
+            <div class="row">           
+                <div class="col-md-6">
+                    <input type="number" class="form-control" min="0" max="100" ng-model="data.progress"/>
+                </div>
+                <div class="col-md-6">
+                    <button type="button" class="btn btn-success" ng-click="updateProgress()">Update progress</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <button type="button" class="btn btn-success" ng-click="randomProgress()">Randomize</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">          
+            <div radial-progress></div>
+        </div>
+        <h2 class="col-md-12">Events in ng-radial-progress</h2>
+        <h3>Code:</h3>
+        <pre class="col-md-6">
+function showUpdatedNumber(event, value){
+    $scope.updatedNumber = 'The number is ' + value;
+}
+$rootScope.$on('radialProgressUpdate', showUpdatedNumber);
+        </pre>
+        <h3>Result</h3>
+        <p class="col-md-6" ng-bind="updatedNumber"></p>
+        <h2 class="col-md-12">GetData from ng-radial-progress</h2>
+        <h3>Code:</h3>
+        <pre class="col-md-6">
+function callbackGetData(percentage, isVisible){
+    $scope.labelPercentage = 'percentage: ' + percentage;
+    $scope.labelIsVsisible = 'isVisible: ' + value;
+}
+$rootScope.$emit('radialProgressGetData', callbackGetData);
+        </pre>
+        <h3>Result</h3>
+        <button type="button" class="btn btn-success" ng-click="getData()">Get data</button>
+        <p class="col-md-6" ng-bind="labelPercentage"></p>
+        <p class="col-md-6" ng-bind="labelIsVsisible"></p>
+    </div>
+</body>
+</html>

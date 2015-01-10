@@ -1,0 +1,16 @@
+<div class="radial-progress" ng-show="progress.isVisible">
+	<div class="circle">
+		<div class="mask full" ng-style="progress.incrementStyle">
+			<div class="fill" ng-style="progress.incrementStyle"></div>
+		</div>
+		<div class="mask half">
+			<div class="fill" ng-style="progress.incrementStyle"></div>
+			<div class="fill fix" ng-style="progress.incrementFixStyle"></div>
+		</div>
+		<div class="shadow"></div>
+	</div>
+	<div class="inset">
+		<div class="percentage" ng-bind="progress.percentage + '%'"></div>
+	</div>
+</div>
+<div class="radial-progress-missing-data" ng-show="progress.showMissingDataMsg" ng-bind="config.missingDataMsg"></div>
